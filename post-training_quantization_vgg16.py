@@ -1,8 +1,8 @@
 """
-Post Training Quantization using TensorFlow for MobileNet v2
-============================================================
+Post Training Quantization using TensorFlow for VGG-16
+======================================================
 # The script will generate a full integer quantized 
-  MobileNet v2 .tflite model
+  VGG-16 .tflite model
 # By Kuen-Wey Lin
 # pip3 show tensorflow => Version: 2.5.0
 """
@@ -22,7 +22,7 @@ def representative_dataset():
     for sn in range(num_calibration_steps):
         image_data = tf.keras.preprocessing.image.load_img('./test/' + str(sn) + '.jpg', target_size=image_shape)
         image_data = tf.keras.preprocessing.image.img_to_array(image_data)
-        image_data = tf.keras.applications.mobilenet_v2.preprocess_input(image_data)
+        image_data = tf.keras.applications.vgg16.preprocess_input(image_data)
         #image_data = image_data.astype(np.float32)
         image_data = np.reshape(image_data, (224, 224, 3))
         imgs.append(image_data)
@@ -34,7 +34,7 @@ def representative_dataset():
 
 # a Keras image classification model, loaded with weights pre-trained on ImageNet
 # You can find the downloaded Keras files in $HOME/.keras
-model = tf.keras.applications.mobilenet_v2.MobileNetV2(weights="imagenet", input_shape=(224, 224, 3))
+model = tf.keras.applications.vgg16.VGG16(weights="imagenet", input_shape=(224, 224, 3))
 
 # convert a tf.Keras model to a TensorFlow Lite model
 converter = tf.lite.TFLiteConverter.from_keras_model(model)

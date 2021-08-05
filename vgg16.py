@@ -1,6 +1,6 @@
 """
-Deploy Pre-Trained TensorFlow Lite MobileNet V2
-===============================================
+Deploy Pre-Trained TensorFlow Lite VGG-16
+=========================================
 By Kuen-Wey Lin
 TVM commit: da27e6d9a466263a9a0025aba92086a8bf837edb
 """
@@ -15,7 +15,7 @@ target = 'llvm'
 target_host = 'llvm'
 ctx = tvm.cpu(0)
 
-model_path = './mobilenet_v2_int8.tflite'
+model_path = './vgg16-int8.tflite'
 input_name = 'input_1'
 data_type = 'int8' # input's data type
 img_path = './image_classification_50/'
@@ -160,7 +160,7 @@ def run_tflite_model(tflite_model_buf, input_data):
 ######################################################################
 # Calculate Top-1 and Top-5 Accuracy for TFLite
 # ---------------------------------------------
-# TFLite Top-1 accuracy: 0.00%; Top-5 accuracy: 18.00% (50 images)
+# TFLite Top-1 accuracy: 74.00%; Top-5 accuracy: 96.00% (50 images)
 '''
 def get_tflite_accuracy(img_name):
     print("\n")
@@ -216,7 +216,7 @@ print("TFLite Top-1 accuracy: {:.2%}; Top-5 accuracy: {:.2%}".format(top1_total/
 ######################################################################
 # Create TVM runtime and do inference
 # -----------------------------------
-# TVM Top-1 accuracy: 60.00%; Top-5 accuracy: 84.00% (50 images)
+# TVM Top-1 accuracy: 74.00%; Top-5 accuracy: 96.00% (50 images)
 
 from tvm.contrib import graph_runtime
 def get_tvm_accuracy(graph, lib, params, ctx, img_name):
