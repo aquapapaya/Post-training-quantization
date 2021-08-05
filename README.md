@@ -8,7 +8,7 @@
 ## How to Compile a Quantized Model with TVM
 * TVM commit: da27e6d9a466263a9a0025aba92086a8bf837edb
 * Refer to [inception_v3.py](inception_v3.py), [mobilenet_v2.py](mobilenet_v2.py), and [vgg16.py](vgg16.py)
-* 
+* These files use TVM to compile quantized model and conduct inference in CPU
 ## A TFlite Model Generated from the [script](post-training_quantization_mobilenet_v2.py)
 * Refer to [mobilenet_v2_int8.tflite](mobilenet_v2_int8.tflite)
 * Accuracy on the images in [image_classification_50](image_classification_50): Top-1 accuracy: 60.00%; Top-5 accuracy: 84.00%
